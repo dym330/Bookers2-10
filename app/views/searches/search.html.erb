@@ -1,0 +1,45 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 px-sm-0 mx-auto">
+      <% if @user_or_book ==  "1" %>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th></th>
+              <th>name</th>
+              <th>introduction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+                <td><%= user.name %></td>
+                <td><%= user.introduction %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% elsif @user_or_book ==  "2" %>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th></th>
+              <th>title</th>
+              <th>Opinion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @books.each do |book| %>
+              <tr>
+                <td><%= attachment_image_tag(book.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+                <td><%= book.title %></td>
+                <td><%= book.body %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
