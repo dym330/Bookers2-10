@@ -9,8 +9,20 @@
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
-  		  <tr class="book_<%= @book_show.id %>">
-  		    <%= render 'books/show_post' %>
+  		  <tr>
+  		    <td><%= link_to user_path(@book_show.user) do %>
+            <%= attachment_image_tag(@book_show.user, :profile_image, :fill, 100, 100, fallback: "no-image-icon.jpg") %><br>
+            <%= @book_show.user.name %>
+            <% end %>
+          </td>
+          <td><%= link_to @book_show.title, book_path(@book_show) %></td>
+          <td><%= @book_show.body %></td>
+          <td class="book_<%= @book_show.id %>"><%= render 'books/favorite', book: @book_show %></td>
+          <td><%= "コメント数：#{@book_show.book_comments.count}" %></td>
+          <% if @book_show.user == current_user %>
+          <td><%= link_to 'Edit', edit_book_path(@book_show), class: "btn btn-sm btn-success edit_book_#{@book_show.id}" %></td>
+          <td><%= link_to 'Destroy', book_path(@book_show), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book_show.id}"%></td>
+          <% end %>
         </tr>
       </table>
       <div class="comments">
