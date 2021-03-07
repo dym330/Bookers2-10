@@ -10,8 +10,37 @@
         </div>
         <div class="field">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, class: "email" %>
+          <%= f.email_field :email, class: "email" %>
         </div>
+        <div class="field">
+          <%= f.label :postcode %><br />
+          <%= f.text_field :postcode %>
+        </div>
+        <div class="field">
+          <%= f.label :prefecture_code%><br />
+          <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %>
+        </div>
+        <div class="field">
+          <%= f.label :address_city %><br />
+          <%= f.text_field :address_city %>
+        </div>
+        <div class="field">
+          <%= f.label :address_street %><br />
+          <%= f.text_field :address_street %>
+        </div>
+        <div class="field">
+          <%= f.label :address_building %><br />
+          <%= f.text_field :address_building %>
+        </div>
+
+
+
+
+
+
+
+
+
         <div class="field">
           <%= f.label :password %>
           <% if @minimum_password_length %>
