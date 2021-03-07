@@ -4,11 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  after_create :send_welcome_mail
+  # after_create :send_welcome_mail
 
-  def send_welcome_mail
-    ThanksMailer.signup(self).deliver_now
-  end
+  # def send_welcome_mail
+    # ThanksMailer.signup(self).deliver_now
+  # end
 
   include JpPrefecture
   jp_prefecture :prefecture_code
