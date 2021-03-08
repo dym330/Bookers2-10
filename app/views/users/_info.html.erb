@@ -21,6 +21,13 @@
   <% if current_user == user %>
     <%= link_to '',edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
   <% else %>
-    <%= render "users/follow_unfollow", user: user %>
+    <div class="col-12">
+      <% if chat_room?(user) %>
+        <%= link_to "チャットをする room直行", room_path(@room) %>
+      <% else %>
+        <%= link_to "チャットをする", rooms_path(opponent: user.id), method: :post %>
+      <% end %>
+    </div>
+    <div class="col-12"><%= render "users/follow_unfollow", user: user %></div>
   <% end %>
 </div>
